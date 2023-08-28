@@ -28,3 +28,19 @@ __init__(self): Constructor of the class. It is in charge of initializing the ba
 take(self, count): This method allows you to take a specified number of chips from the bag.
 
 put(self, tiles): Este método permite devolver fichas a la bolsa.
+
+## [0.0.2] - 2023-08-28
+
+### Added
+
+- Create the board, cell, players, scrabble classes
+
+- The Board class generates a board with the appropriate dimensions, that is, 15 rows and 15 columns.
+
+- The Cell class represents a cell in a game, such as a word game, and has methods for adding a letter, calculating its value, and taking multipliers into account.
+
+- The Player class is used to create objects that represent the players in a game and has a useful attribute to store the tokens or items that a player owns.
+
+- ScrabbleGame creates a complete Scrabble game. It has a board, a bag of chips, and a list of players.
+
+Each test with its respective code
