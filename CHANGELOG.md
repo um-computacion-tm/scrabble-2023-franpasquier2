@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] - 2023-08-29
+
+### Added
+
+- Add two essential new features to the 'Board' class.
+
+- Added method that takes a row, column and a tile, and checks if it is possible to place the tile in the corresponding cell on the board.
+
+- Validate if a word placed on the board is valid according to the specified address
 
 ## [0.0.5] - 2023-08-29
 
