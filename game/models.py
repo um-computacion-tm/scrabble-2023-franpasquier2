@@ -49,6 +49,8 @@ class BagTiles():
     def put(self, tiles):
         self.tiles.extend(tiles)
 
+    
+
     # def initial_tiles(self):
     #     total = []
     #     bag = BagTiles()
