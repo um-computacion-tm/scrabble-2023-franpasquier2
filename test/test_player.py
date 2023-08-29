@@ -13,14 +13,14 @@ class TestPlayer(unittest.TestCase):
         initial_tiles = self.player.tiles.copy()
         initial_bag_size = len(self.player.bag.tiles)
         
-        # Intercambia la primera ficha
+        
         self.player.exchange(0)
         
         self.assertNotEqual(initial_tiles, self.player.tiles)
-        self.assertEqual(len(self.player.tiles), 7)  # Asegura que el jugador aún tiene 7 fichas
-        self.assertEqual(len(self.player.bag.tiles), initial_bag_size)  # La bolsa no debe cambiar
+        self.assertEqual(len(self.player.tiles), 7) 
+        self.assertEqual(len(self.player.bag.tiles), initial_bag_size)  
 
-    # Agrega más pruebas según tus necesidades
+
 
 if __name__ == '__main__':
     unittest.main()
