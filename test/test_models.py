@@ -27,7 +27,7 @@ class TestBagTiles(unittest.TestCase):
         put_tiles = [Tile('X', 8), Tile('Q', 5)]
         bag.put(put_tiles)
         self.assertEqual(len(bag.tiles), initial_tiles_count + 2)
-
+    
 
 if __name__ == '__main__':
     unittest.main()
