@@ -23,6 +23,8 @@ checks if the player's chip exchange does not alter his hand or the number of ch
 
 - BagTiles now wraps all tiles together with their correct values.
 
+- I made a few small changes
+
 ## [0.0.2] - 2023-08-28
 
 ### Added
