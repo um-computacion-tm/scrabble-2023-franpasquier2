@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 08-09-2023
+
+### Added
+
+- "Adds a new attribute to the "Scrabble" class called "spin", which will record the spin state of the game. Also, adds an attribute called "turn" to count the total number of turns in the game.
+
+- Introduces two new methods in the "Scrabble" class called "playing" and "next_turn". The "playing" method must return a true value (True) to indicate the end of the game, while the "next_turn" method will take care of increasing the "turn" variable by 1.
+
+- Lastly, create a function called "main".
+
+
+
+
 ## [0.0.6] - 2023-08-29
 
 ### Added
