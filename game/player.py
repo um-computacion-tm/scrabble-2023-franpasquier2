@@ -1,13 +1,13 @@
 from game.models import BagTiles
 #player.py
 class Player:
-    def __init__(self):
-        self.tiles = []
-        self.rack = []
 
-    def get_tiles(self,amount,bag=BagTiles):
-        for _ in range(amount):
-            self.rack.append(bag.take(1))
+    def __init__(self):
+        self.hand = []
+        
+
+    def get_tiles(self, count, bag):
+        self.hand.extend(bag.take(count))
 
     def exchange_tiles(self,index,bag=BagTiles):
         tile_to_exchange = self.rack.pop(index)

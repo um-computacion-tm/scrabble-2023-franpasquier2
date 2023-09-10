@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.9] - 10-09-2023
+
+### Added
+ 
+ main.py
+-Players are asked for the number of participants (between 2 and 4).
+-The game starts and the number of players is displayed.
+-On each player's turn, they are awarded letter tiles from the bag until they have 7 in their hand.
+-The player enters a word, its location on the board, and orientation.
+-The word and its location on the board are validated.
+-The game continues until completed.
+-A game.scrabble module with classes and methods not shown in the provided code is required for it to work correctly.
+
+-The tests check game initialization, turn changing, word validation, and other aspects of the game. These tests ensure that the Scrabble class works correctly during game development.
+
+
 ## [0.0.8] - 09-09-2023
 
 ### Added

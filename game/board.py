@@ -4,17 +4,18 @@ from game.models import Tile
 
 
 class Board:
-    def __init__(self):
-        self.grid = [
-            [ Cell(1, '') for _ in range(15) ]
-            for _ in range(15)
-        ]
 
-    def place_tile(self, row, col, tile):
+    def __init__(self, width=15, height=15):
+        self.width = width
+        self.height = height
+        self.cells = [[Cell() for _ in range(self.height)] for _ in range(self.width)]
+
+
+    def place_tile(self, row, col, letter):
         if 0 <= row < 15 and 0 <= col < 15:
-            cell = self.grid[row][col]
+            cell = self.cells[row][col]
             if cell.letter is None:
-                cell.add_letter(tile)
+                cell.add_letter(letter)
                 return True
         return False
 
@@ -22,12 +23,12 @@ class Board:
         if direction == 'horizontal':
             for i, letter in enumerate(word):
                 col = start_col + i
-                if col >= 15 or (self.grid[start_row][col].letter is None or self.grid[start_row][col].letter.letter != letter):
+                if col >= 15 or (self.cells[start_row][col].letter is None or self.cells[start_row][col].letter.letter != letter):
                     return False
             return True
         elif direction == 'vertical':
             for i, letter in enumerate(word):
                 row = start_row + i
-                if row >= 15 or (self.grid[row][start_col].letter is None or self.grid[row][start_col].letter.letter != letter):
+                if row >= 15 or (self.cells[row][start_col].letter is None or self.cells[row][start_col].letter.letter != letter):
                     return False
             return True

@@ -5,8 +5,8 @@ from game.models import Tile
 class TestBoard(unittest.TestCase):
     def test_init(self):
         board = Board()
-        self.assertEqual(len(board.grid), 15)
-        self.assertEqual(len(board.grid[0]), 15)
+        self.assertEqual(len(board.cells), 15)
+        self.assertEqual(len(board.cells[0]), 15)
 
     def test_place_tile(self):
         board = Board()
@@ -31,4 +31,5 @@ class TestBoard(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 
