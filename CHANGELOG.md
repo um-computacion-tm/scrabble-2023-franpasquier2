@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] - 09-09-2023
+
+### Added
+
+- Modify the file to calculate the word value
+- This method calculates the value of a word on the game board, considering the letter and word multipliers. Examine each word cell, add the value of the tokens, and multiply the result by the word multiplier if present. This approach ensures accurate calculation of the word value in the context of the game.
+
+
+
 ## [0.0.7] - 08-09-2023
 
 ### Added

@@ -1,18 +1,17 @@
 import unittest
 
+from game.cell import Cell
 
-def calculate_word_value(word):
-    total_value = 0
-    word_multiplier = 1
-
+def calculate_word_value(word: list[Cell]):
+    value: int = 0
+    multiplier_word = None
     for cell in word:
-        letter_value = cell.letter.value
-        cell_multiplier = cell.multiplier if cell.multiplier_type == 'letter' else 1
-        total_value += letter_value * cell_multiplier
-
+        value = value + cell.calculate_value()
         if cell.multiplier_type == 'word':
-            word_multiplier *= cell.multiplier
-
-    return total_value * word_multiplier
+            multiplier_word = cell.multiplier
+            cell.multiplier = 1
+    if multiplier_word != None:
+        value = (value * multiplier_word)
+    return value
 
 
