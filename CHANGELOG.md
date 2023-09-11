@@ -11,16 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
  
- main.py
--Players are asked for the number of participants (between 2 and 4).
--The game starts and the number of players is displayed.
--On each player's turn, they are awarded letter tiles from the bag until they have 7 in their hand.
--The player enters a word, its location on the board, and orientation.
--The word and its location on the board are validated.
--The game continues until completed.
--A game.scrabble module with classes and methods not shown in the provided code is required for it to work correctly.
+-This version adds a method to validate if a word a player wants to place on the board fits on it. Calculate this from the location of the first letter of the word and the length of the word. Take the coordinates of the first letter and add the length to the x or y coordinate, depending on the orientation of the word (horizontal or vertical). If the result is greater than 15, which is the size of the board, it returns False, meaning the word is invalid. If the result is not greater than 15, it returns True, which means that the word has been validated. This feature works correctly and passes all tests.
 
--The tests check game initialization, turn changing, word validation, and other aspects of the game. These tests ensure that the Scrabble class works correctly during game development.
+
 
 
 ## [0.0.8] - 09-09-2023

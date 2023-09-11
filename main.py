@@ -1,4 +1,4 @@
-from game.scrabble import Scrabble
+'''from game.scrabble import Scrabble
 
 def welcome_message():
     print('Bienvenido')
@@ -45,6 +45,6 @@ def main():
         play_turn(game)
 
 if __name__ == "__main__":
-    main()
+    main()'''
     
         
