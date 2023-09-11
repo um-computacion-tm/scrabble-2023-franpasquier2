@@ -1,22 +1,25 @@
 from game.board import Board
 from game.player import Player
 from game.models import BagTiles
-import uuid
+from game.cell import Cell
 
 
-class Scrabble:
+class ScrabbleGame:
     def __init__(self, players_count):
         self.board = Board()
         self.bag_tiles = BagTiles()
         self.players = []
-        self.gameid = str(uuid.uuid4())
         for _ in range(players_count):
-            self.players.append(Player())
-
+             self.players.append(Player(id=len(self.players) + 1))# Quitamos el argumento 'id'
         self.current_player = None
-        self.turn = 0
-    def playing(self):
-        return True
-
     def next_turn(self):
-        self.turn += 1
+        if self.current_player is None:
+            self.current_player = self.players[0]
+        elif id(self.current_player) == id(self.players[(len(self.players)) -1]):
+            self.current_player = self.players[0]
+        else:
+            self.current_player = self.players[self.players.index(self.current_player)+ 1]
+            
+
+
+

@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.9] - 10-09-2023
+
+### Added
+ 
+-This version adds a method to validate if a word a player wants to place on the board fits on it. Calculate this from the location of the first letter of the word and the length of the word. Take the coordinates of the first letter and add the length to the x or y coordinate, depending on the orientation of the word (horizontal or vertical). If the result is greater than 15, which is the size of the board, it returns False, meaning the word is invalid. If the result is not greater than 15, it returns True, which means that the word has been validated. This feature works correctly and passes all tests.
+
+
+
+
 ## [0.0.8] - 09-09-2023
 
 ### Added
