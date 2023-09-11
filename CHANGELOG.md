@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.10] - 11-09-2023
+
+### Changed
+
+- Now the initial tokens are defined at the beginning and not by a method.
+
+### Removed
+
+- Remove the initial_tiles method
+
+
 ## [0.0.9] - 10-09-2023
 
 ### Added
