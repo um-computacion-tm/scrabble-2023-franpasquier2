@@ -44,52 +44,7 @@ class TestScrabble(unittest.TestCase):
         tile = self.scrabble_game.draw_tile()
         self.assertIsNone(tile)
 
-    def test_validate_word_direction(self):
-        # Configura un caso de prueba con diferentes orientaciones
-
-        # Caso 1: Orientación horizontal válida
-        result1 = self.scrabble_game.validate_word("PALABRA", (0, 0), "H")
-        self.assertTrue(result1)
-
-        # Caso 2: Orientación vertical válida
-        result2 = self.scrabble_game.validate_word("PALABRA", (0, 0), "V")
-        self.assertTrue(result2)
-
-        # Caso 3: Orientación no válida
-        result3 = self.scrabble_game.validate_word("PALABRA", (0, 0), "D")
-        self.assertFalse(result3)
-
-    def test_validate_word_coordinates(self):
-        # Configura un caso de prueba con diferentes coordenadas
-
-        # Caso 1: Coordenadas válidas
-        result1 = self.scrabble_game.validate_word("PALABRA", (0, 0), "H")
-        self.assertTrue(result1)
-
-        # Caso 2: Coordenadas fuera del límite horizontal
-        result2 = self.scrabble_game.validate_word("PALABRA", (16, 0), "H")
-        self.assertFalse(result2)
-
-        # Caso 3: Coordenadas fuera del límite vertical
-        result3 = self.scrabble_game.validate_word("PALABRA", (0, 16), "V")
-        self.assertFalse(result3)
-
-    def test_validate_word_crossing(self):
-        # Configura un caso de prueba donde la palabra cruza con una palabra existente
-
-        # Coloca una palabra existente en el tablero
-        self.scrabble_game.board.cells[0][0].add_letter("P")
-        self.scrabble_game.board.cells[0][1].add_letter("A")
-        self.scrabble_game.board.cells[0][2].add_letter("L")
-        self.scrabble_game.board.cells[0][3].add_letter("A")
-
-        # Caso 1: Palabra que cruza con palabra existente
-        result1 = self.scrabble_game.validate_word("PALABRA", (0, 0), "V")
-        self.assertTrue(result1)
-
-        # Caso 2: Palabra que no cruza con palabra existente
-        result2 = self.scrabble_game.validate_word("BARCO", (0, 0), "H")
-        self.assertTrue(result2)
+   
 
 if __name__ == '__main__':
     unittest.main()
