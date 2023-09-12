@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.11] - 12-09-2023
+
+### Changed
+
+
+-The change made to check for collisions in the code was to add a condition that checks if the letter you are trying to place in a cell on the board conflicts with an already existing letter in that same cell. 
+
+-If there is a letter in the cell and that letter is not the same as the letter you are trying to place, it is considered a collision and the word is invalid in that position. This applies to both horizontally and vertically placed words on the board.
+
+
 ## [Unreleased]
 
 ## [0.0.10] - 11-09-2023
