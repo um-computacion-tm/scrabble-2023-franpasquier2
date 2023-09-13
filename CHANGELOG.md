@@ -5,10 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.12] - 13-09-2023
+
+### Add 
+
+-Add the missing tests to my board class so that the coverage is complete.
+
+-test_validate_word_inside_board_horizontal: Checks if a word fits correctly in a horizontal row on the board.
+
+-test_validate_word_inside_board_vertical: Tests whether a word fits correctly into a vertical column on the board.
+
+-test_validate_word_inside_board_without_orientation: Ensures that the method properly handles the case where no orientation is provided to validate the word on the board.
+
+
 ## [0.0.11] - 12-09-2023
 
 ### Changed
-
 
 -The change made to check for collisions in the code was to add a condition that checks if the letter you are trying to place in a cell on the board conflicts with an already existing letter in that same cell. 
 
