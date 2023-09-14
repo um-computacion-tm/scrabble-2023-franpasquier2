@@ -26,10 +26,13 @@ class Board:
                     return False  # Verificar colisión con letras existentes
             return True  # Devuelve True si la palabra es válida en la posición y orientación dadas
         return False  # Devuelve False si la orientación no es ni "H" ni "V"
-
-
-
     
 
-
-   
+    def is_empty(self):
+        for row in self.grid:
+            for cell in row:
+                if cell.letter != '':
+                    return False
+        return True
+    
+    

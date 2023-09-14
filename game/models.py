@@ -123,10 +123,6 @@ class BagTiles():
         self.tiles.extend(tiles)
 
 
-                        
-
-
-
 if __name__ == '__main__':
     unittest.main()
   

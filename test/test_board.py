@@ -81,3 +81,24 @@ class TestBoard(unittest.TestCase):
         orientation = ''
         word_is_valid = board.validate_word_inside_board(word, location, orientation)
         self.assertFalse(word_is_valid)
+
+    def test_is_empty_board(self):
+        board = Board()
+        self.assertFalse(board.is_empty())
+        
+    def test_is_empty_board_single_letter(self):
+        board = Board()
+        board.grid[7][7].letter = 'A'  # Agrega una letra en el centro
+        self.assertFalse(board.is_empty())  # No debe estar vacío
+
+    def test_is_empty_board_full(self):
+        board = Board()
+        for i in range(15):
+            for j in range(15):
+                board.grid[i][j].letter = 'X'  # Llena el tablero con letras
+        self.assertFalse(board.is_empty())  # No debe estar vacío
+
+    def test_is_empty_board_mixed(self):
+        board = Board()
+        board.grid[5][5].letter = 'Y'  # Agrega una letra en una celda
+        self.assertFalse(board.is_empty())
