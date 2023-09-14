@@ -5,9 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.13] - 14-09-2023
+
+### Add 
+
+- The is_empty function checks if a board is empty. It loops through all the cells on the board and, if it finds at least one cell with a letter (that is, it is not empty), it returns False, indicating that the board is not empty. If it does not find any cell with a letter, it returns True, indicating that the board is empty.
+
+
 ## [0.0.12] - 13-09-2023
 
 ### Add 
+
+-Create a class that is a dictionary that checks that words exist in the dictionary.
 
 -Add the missing tests to my board class so that the coverage is complete.
 
