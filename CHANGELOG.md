@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.14] - 21-09-2023
+
+### Add
+
+- To check if a word passes through the center of the board both vertically and horizontally, add a function called validate_word_passes_center in the Board class
+- This function checks if the word will pass through the center of the board based on its length and orientation. If the word passes through the center, the function returns True; otherwise it returns False.
+
+
 ## [0.0.13] - 14-09-2023
 
 ### Add 

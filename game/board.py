@@ -27,12 +27,35 @@ class Board:
             return True  # Devuelve True si la palabra es válida en la posición y orientación dadas
         return False  # Devuelve False si la orientación no es ni "H" ni "V"
     
-
     def is_empty(self):
         for row in self.grid:
             for cell in row:
                 if cell.letter != '':
                     return False
         return True
+    
+    def validate_word_passes_center(self, word, orientation):
+        center_x, center_y = 7, 7  # Coordenadas del centro del tablero
+
+        if orientation == "H":
+            len_word = len(word)
+            start_x = center_x - (len_word // 2)
+            end_x = start_x + len_word
+
+            if 0 <= start_x < 15 and 0 <= end_x < 15:
+                return True
+            else:
+                return False
+        elif orientation == "V":
+            len_word = len(word)
+            start_y = center_y - (len_word // 2)
+            end_y = start_y + len_word
+
+            if 0 <= start_y < 15 and 0 <= end_y < 15:
+                return True
+            else:
+                return False
+        return False
+    
     
     
