@@ -1,12 +1,17 @@
 from game.models import Tile
 
 class Cell:
-    def __init__(self, multiplier=1, multiplier_type='', letter = None):
+    def __init__(self, multiplier=1, multiplier_type='', letter=None):
+        if not isinstance(multiplier, int):
+            raise ValueError("El valor del multiplicador debe ser un número entero.")
+        if multiplier_type not in ('', 'letter', 'word'):
+            raise ValueError("El tipo de multiplicador debe ser '', 'letter' o 'word'.")
+
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
         self.letter = letter 
 
-    def add_letter(self, letter:Tile):
+    def add_letter(self, letter: Tile):
         self.letter = letter
 
     def calculate_value(self):
@@ -16,3 +21,10 @@ class Cell:
             return self.letter.value * self.multiplier
         else:
             return self.letter.value
+
+    def remove_letter(self):
+        self.letter = None
+
+    def __str__(self):
+        return f"Cell(multiplier={self.multiplier}, multiplier_type='{self.multiplier_type}', letter={self.letter})"
+

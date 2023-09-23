@@ -100,30 +100,54 @@ class TestBoard(unittest.TestCase):
     def test_validate_word_passes_center_horizontal_valid(self):
         # Caso 1: Palabra que pasa por el centro horizontalmente (válida)
         word = "Facultad"
+        location = (7, 6)  # Posición donde el centro está en (7, 7)
         orientation = 'H'
-        word_passes_center = self.board.validate_word_passes_center(word, orientation)
-        self.assertTrue(word_passes_center)
+        word_is_valid = self.board.validate_word_passes_center(word, orientation)
+        self.assertTrue(word_is_valid)
 
     def test_validate_word_passes_center_horizontal_invalid(self):
         # Caso 2: Palabra que no pasa por el centro horizontalmente (inválida)
         word = "Universidad"
         orientation = 'H'
-        word_passes_center = self.board.validate_word_passes_center(word, orientation)
-        self.assertTrue(word_passes_center)
+        word_is_valid = self.board.validate_word_passes_center(word, orientation)
+        self.assertTrue(word_is_valid)
 
     def test_validate_word_passes_center_vertical_valid(self):
         # Caso 3: Palabra que pasa por el centro verticalmente (válida)
         word = "Terreno"
         orientation = 'V'
-        word_passes_center = self.board.validate_word_passes_center(word, orientation)
-        self.assertTrue(word_passes_center)
+        word_is_valid = self.board.validate_word_passes_center(word, orientation)
+        self.assertTrue(word_is_valid)
 
     def test_validate_word_passes_center_vertical_invalid(self):
         # Caso 4: Palabra que no pasa por el centro verticalmente (inválida)
         word = "Sierra"
         orientation = 'V'
-        word_passes_center = self.board.validate_word_passes_center(word, orientation)
-        self.assertTrue(word_passes_center)
+        word_is_valid = self.board.validate_word_passes_center(word, orientation)
+        self.assertTrue(word_is_valid)
+
+    def test_validate_word_inside_board_horizontal_out_of_bounds(self):
+        # Caso 1: Palabra horizontal que excede los límites del tablero (inválida)
+        word = "Facultad"
+        location = (14, 10)
+        orientation = 'H'
+        word_is_valid = self.board
+
+    def test_validate_word_inside_board_horizontal_out_of_bounds(self):
+        # Caso 1: Palabra horizontal que excede los límites del tablero (inválida)
+        word = "Facultad"
+        location = (14, 10)
+        orientation = 'H'
+        word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
+        self.assertFalse(word_is_valid)
+
+    def test_validate_word_inside_board_vertical_out_of_bounds(self):
+        # Caso 2: Palabra vertical que excede los límites del tablero (inválida)
+        word = "Facultad"
+        location = (10, 14)
+        orientation = 'V'
+        word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
+        self.assertFalse(word_is_valid)
 
 
 if __name__ == '__main__':
