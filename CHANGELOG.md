@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [0.0.15] - 23-09-2023
+
+### Add
+
+- Add validations for multiplier and multiplier_type in the __init__ constructor. If any of these values ​​do not meet the specified requirements, a ValueError exception will be raised with a corresponding error message. This ensures that the values ​​provided are valid when instantiating the Cell class.
+
+
+
 ## [0.0.14] - 21-09-2023
 
 ### Add
