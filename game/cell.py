@@ -27,4 +27,13 @@ class Cell:
 
     def __str__(self):
         return f"Cell(multiplier={self.multiplier}, multiplier_type='{self.multiplier_type}', letter={self.letter})"
+    
+    def remove_letter(self):
+        self.letter = None
+
+    def add_letter(self, letter: Tile):
+        if not isinstance(letter, Tile):
+            raise ValueError("Only Tile objects can be added as letters.")
+        self.letter = letter
+
 
