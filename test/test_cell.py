@@ -60,15 +60,36 @@ class TestCell(unittest.TestCase):
 
     def test_set_multiplier(self):
         cell = Cell()
+        with self.assertRaises(ValueError):
+            cell.set_multiplier("2", 'letter')
         cell.set_multiplier(2, 'letter')
         self.assertEqual(cell.multiplier, 2)
         self.assertEqual(cell.multiplier_type, 'letter')
+
+   
 
     def test_is_occupied(self):
         cell_occupied = Cell(letter=Tile('A', 1))
         cell_empty = Cell()
         self.assertTrue(cell_occupied.is_occupied())
         self.assertFalse(cell_empty.is_occupied())
+
+    def test_can_contain_letter_empty_cell(self):
+        cell = Cell()
+        self.assertTrue(cell.can_contain_letter())
+
+    def test_can_contain_letter_letter_multiplier(self):
+        cell = Cell(multiplier_type='letter')
+        self.assertTrue(cell.can_contain_letter())
+
+    def test_can_contain_letter_word_multiplier(self):
+        cell = Cell(multiplier_type='word')
+        self.assertFalse(cell.can_contain_letter())
+
+    def test_can_contain_letter_occupied_cell(self):
+        letter = Tile('B', 2)
+        cell = Cell(letter=letter)
+        self.assertFalse(cell.can_contain_letter())
 
     
 

@@ -31,6 +31,8 @@ class Cell:
         self.letter = letter
 
     def set_multiplier(self, multiplier, multiplier_type):
+        if not isinstance(multiplier, int):
+            raise ValueError("El valor del multiplicador debe ser un número entero.")
         if multiplier_type not in ('', 'letter', 'word'):
             raise ValueError("El tipo de multiplicador debe ser '', 'letter' o 'word'.")
         self.multiplier = multiplier
@@ -38,6 +40,12 @@ class Cell:
 
     def is_occupied(self):
         return self.letter is not None
+    
+    
+    def can_contain_letter(self):
+        return not self.is_occupied() and self.multiplier_type in ('', 'letter')
+
+
 
 
 
