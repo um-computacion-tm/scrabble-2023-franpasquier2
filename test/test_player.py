@@ -10,6 +10,7 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(player_1.id,1)
         self.assertEqual(player_2.id,2)
         self.assertEqual(player_3.id,3)
+        
 
 if __name__ == '__main__':
     unittest.main()

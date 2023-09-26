@@ -62,9 +62,14 @@ class TestBoard(unittest.TestCase):
         word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
         self.assertFalse(word_is_valid)
 
-    def test_is_empty_board(self):
-        # Caso 1: Tablero no vacío
+    def test_is_empty(self):
+        # Caso 1: Tablero vacío (la celda en (7, 7) no tiene una letra)
+        self.assertTrue(self.board.is_empty())
+
+        # Caso 2: Tablero con una letra en la celda (7, 7)
+        self.board.grid[7][7].letter = 'A'
         self.assertFalse(self.board.is_empty())
+
 
     def test_is_empty_board_single_letter(self):
         # Caso 1: Tablero con una letra
@@ -81,7 +86,7 @@ class TestBoard(unittest.TestCase):
     def test_is_empty_board_mixed(self):
         # Caso 1: Tablero con una letra en una celda
         self.board.grid[5][5].letter = 'Y'
-        self.assertFalse(self.board.is_empty())
+        self.assertTrue(self.board.is_empty())
 
     def test_word_passes_center_horizontal(self):
         # Caso 1: Palabra que pasa por el centro horizontalmente

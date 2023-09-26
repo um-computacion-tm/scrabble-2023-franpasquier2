@@ -11,9 +11,6 @@ class Cell:
         self.multiplier_type = multiplier_type
         self.letter = letter 
 
-    def add_letter(self, letter: Tile):
-        self.letter = letter
-
     def calculate_value(self):
         if self.letter is None:
             return 0
@@ -21,9 +18,6 @@ class Cell:
             return self.letter.value * self.multiplier
         else:
             return self.letter.value
-
-    def remove_letter(self):
-        self.letter = None
 
     def __str__(self):
         return f"Cell(multiplier={self.multiplier}, multiplier_type='{self.multiplier_type}', letter={self.letter})"
@@ -35,5 +29,15 @@ class Cell:
         if not isinstance(letter, Tile):
             raise ValueError("Only Tile objects can be added as letters.")
         self.letter = letter
+
+    def set_multiplier(self, multiplier, multiplier_type):
+        if multiplier_type not in ('', 'letter', 'word'):
+            raise ValueError("El tipo de multiplicador debe ser '', 'letter' o 'word'.")
+        self.multiplier = multiplier
+        self.multiplier_type = multiplier_type
+
+    def is_occupied(self):
+        return self.letter is not None
+
 
 

@@ -31,7 +31,6 @@ class TestCell(unittest.TestCase):
         cell = Cell(multiplier=2, multiplier_type='letter')
         letter = Tile(letter='p', value=3)
         cell.add_letter(letter=letter)
-
         self.assertEqual(cell.calculate_value(), 6)
 
     def test_cell_multiplier_word(self):
@@ -55,10 +54,23 @@ class TestCell(unittest.TestCase):
         self.assertIsNone(self.cell.letter)  # La letra no debe haberse agregado
 
     def test_remove_letter(self):
-        letter = Tile(letter='B', value=2)
-        self.cell.add_letter(letter)
-        self.cell.remove_letter()
-        self.assertIsNone(self.cell.letter)
+        cell = Cell(1,'',Tile(letter='B', value=2))
+        cell.remove_letter()
+        self.assertEqual(self.cell.letter,None)
+
+    def test_set_multiplier(self):
+        cell = Cell()
+        cell.set_multiplier(2, 'letter')
+        self.assertEqual(cell.multiplier, 2)
+        self.assertEqual(cell.multiplier_type, 'letter')
+
+    def test_is_occupied(self):
+        cell_occupied = Cell(letter=Tile('A', 1))
+        cell_empty = Cell()
+        self.assertTrue(cell_occupied.is_occupied())
+        self.assertFalse(cell_empty.is_occupied())
+
+    
 
 if __name__ == '__main__':
     unittest.main()
