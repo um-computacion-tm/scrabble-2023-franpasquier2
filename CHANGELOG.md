@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [0.0.19] - 29-09-2023
+
+### Add
+- Add a new file containing all the words.
+
+### Changes
+
+- I made some modifications to dictionary that can check if a word is in a list of valid words after removing accents and converting it to lowercase.
 
 ## [0.0.18] - 26-09-2023
 
