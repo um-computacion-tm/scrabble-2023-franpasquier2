@@ -1,23 +1,12 @@
+import unicodedata
+
+with open('words.txt', 'r', encoding='utf-8') as file:
+    word_list = set(word.strip().lower() for word in file)
+
 class Dictionary:
-    def __init__(self):
-        self.words = set()  # Utilizamos un conjunto para un acceso rápido a las palabras
-
-    def add_word(self, word):
-        self.words.add(word.lower())  # Almacenamos las palabras en minúsculas para hacer búsquedas sin distinción de mayúsculas
-
-    def check_word(self, word):
-        return word.lower() in self.words  # Verificamos si la palabra está en el conjunto (ignorando mayúsculas/minúsculas)
-
-# Incorpora la clase Dictionary en tu código existente
-
-# Crea una instancia del diccionario
-dictionary = Dictionary()
-
-# Agrega palabras al diccionario
-dictionary.add_word("gato")
-dictionary.add_word("perro")
-dictionary.add_word("ratón")
-
-# Comprueba si una palabra existe en el diccionario
-print(dictionary.check_word("gato"))  # True
-print(dictionary.check_word("pájaro"))  # False
+    def remove_accents(self,word):
+        word = ''.join(x for x in unicodedata.normalize('NFKD', word) if not unicodedata.combining(x))
+        return word
+    def verify_word(self,word):
+        word = word.lower()
+        return word in word_list
