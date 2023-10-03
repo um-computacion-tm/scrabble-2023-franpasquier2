@@ -66,7 +66,26 @@ class TestCell(unittest.TestCase):
         self.assertEqual(cell.multiplier, 2)
         self.assertEqual(cell.multiplier_type, 'letter')
 
-   
+    def test_set_multiplier_type(self):
+        cell = Cell()
+        # Intenta configurar un tipo de multiplicador no válido (debe generar un ValueError)
+        with self.assertRaises(ValueError):
+            cell.set_multiplier(2, 'invalid_type')
+
+        # Intenta configurar un tipo de multiplicador válido
+        cell.set_multiplier(2, 'letter')
+        self.assertEqual(cell.multiplier, 2)
+        self.assertEqual(cell.multiplier_type, 'letter')
+
+        # Intenta configurar un tipo de multiplicador válido
+        cell.set_multiplier(3, 'word')
+        self.assertEqual(cell.multiplier, 3)
+        self.assertEqual(cell.multiplier_type, 'word')
+
+        # Intenta configurar un tipo de multiplicador válido
+        cell.set_multiplier(1, '')  # Tipo de multiplicador vacío
+        self.assertEqual(cell.multiplier, 1)
+        self.assertEqual(cell.multiplier_type, '')
 
     def test_is_occupied(self):
         cell_occupied = Cell(letter=Tile('A', 1))
@@ -90,8 +109,6 @@ class TestCell(unittest.TestCase):
         letter = Tile('B', 2)
         cell = Cell(letter=letter)
         self.assertFalse(cell.can_contain_letter())
-
-    
 
 if __name__ == '__main__':
     unittest.main()
