@@ -14,4 +14,11 @@ class Player:
             else:
                 return False
         return True
+    
+    def use_letters(self, tiles):
+        for tile in tiles:
+            if tile in self.tiles:
+                self.tiles.remove(tile)
+            else:
+                raise ValueError("No tienes la letra en tu conjunto de fichas")
 
