@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [0.0.23] - 09-10-2023
+
+### Add 
+
+- New methods in the player classes that evaluate the behavior and functionalities of a player in the game, such as the ability to take chips from a bag, exchange chips, view their chips, manage their score, start and end turns, pass turns and validate if you have the necessary tokens to form valid words
+
+### Changed
+
+- Changes to my srcabble class
+
+
 ## [0.0.22] - 07-10-2023
 
 ### Add 
