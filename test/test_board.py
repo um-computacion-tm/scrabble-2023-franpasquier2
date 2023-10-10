@@ -1,145 +1,186 @@
 import unittest
 from game.board import Board
+from game.models import Tile
+from game.cell import Cell
 
 class TestBoard(unittest.TestCase):
-    def setUp(self):
-        self.board = Board()
-
     def test_init(self):
-        self.assertEqual(len(self.board.grid), 15)
-        self.assertEqual(len(self.board.grid[5]), 15)
+        board = Board()
+        self.assertEqual(len(board.grid), 15)
+        self.assertEqual(len(board.grid[0]), 15)
 
-    def test_validate_word_inside_board_horizontal(self):
-        self.board.grid[3][10].letter = 'F'
-        self.board.grid[4][10].letter = 'a'
-        self.board.grid[5][10].letter = 'c'
-        self.board.grid[6][10].letter = 'u'
-        self.board.grid[7][10].letter = 'l'
-        self.board.grid[8][10].letter = 't'
-        self.board.grid[9][10].letter = 'a'
-        self.board.grid[10][10].letter = 'd'
+    def test_place_tile(self):
+        board = Board()
+        tile = Tile('A', 1)
+        self.assertTrue(board.place_tile(7, 7, tile))
+        self.assertFalse(board.place_tile(7, 7, tile))
+
+    def test_validate_word(self):
+        board = Board()
+        tile_a = Tile('A', 1)
+        tile_b = Tile('B', 2)
+        tile_c = Tile('C', 3)
+
+        board.place_tile(7, 7, tile_a)
+        board.place_tile(7, 8, tile_b)
+        board.place_tile(7, 9, tile_c)
+
+        self.assertTrue(board.validate_word(7, 7, 'ABC', 'Horizontal'))
+        self.assertFalse(board.validate_word(7, 7, 'ACB', 'Horizontal'))
+        self.assertTrue(board.validate_word(7, 7, 'A', 'Vertical'))
+        self.assertFalse(board.validate_word(7, 7, 'AB', 'Vertical'))
         
-        # Caso 1: Palabra válida
+    def test_word_inside_board(self):
+        board = Board()
         word = "Facultad"
-        location = (3, 10)
-        orientation = 'H'
-        word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
+        location = (5, 4)
+        orientation = "Horizontal"
+
+        word_is_valid = board.validate_word_inside_board(word, location, orientation)
+
+        assert word_is_valid == True
+    
+
+    def test_word_out_of_board(self):
+        board = Board()
+        word = "Facultad"
+        location = (14, 4)
+        orientation = "Horizontal"
+
+        word_is_valid = board.validate_word_out_of_board(word, location, orientation)
+
+        assert word_is_valid == False
+
+    def test_word_inside_board_vertical(self):
+        board = Board()
+        word = "Facultad"
+        location = (4, 5)  # Ubicación dentro del tablero
+        orientation = "Vertical"
+
+        word_is_valid = board.validate_word_inside_board(word, location, orientation)
+
         self.assertTrue(word_is_valid)
-
-        # Caso 2: Palabra inválida
-        word = "Universidad"
-        location = (6, 10)
-        word_is_valid = self.board.validate_word_inside_board(word, location, 'H')
-        self.assertFalse(word_is_valid)
-
-    def test_validate_word_inside_board_vertical(self):
-        self.board.grid[9][8].letter = 'T'
-        self.board.grid[9][9].letter = 'e'
-        self.board.grid[9][10].letter = 'r'
-        self.board.grid[9][11].letter = 'r'
-        self.board.grid[9][12].letter = 'e'
-        self.board.grid[9][13].letter = 'n'
-        self.board.grid[9][14].letter = 'o'
         
-        # Caso 1: Palabra válida
-        word = 'Terreno'
-        location = (9, 8)
-        orientation = 'V'
-        word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
-        self.assertTrue(word_is_valid)
 
-        # Caso 2: Palabra inválida
-        word = 'Sierra'
-        location = (15, 10)
-        word_is_valid = self.board.validate_word_inside_board(word, location, 'V')
-        self.assertFalse(word_is_valid)
-
-    def test_validate_word_inside_board_without_orientation(self):
-        # Caso 1: Palabra inválida (sin orientación)
-        word = "Terreno"
-        location = (0, 0)
-        orientation = ''
-        word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
-        self.assertFalse(word_is_valid)
-
-    def test_is_empty(self):
-        # Caso 1: Tablero vacío (la celda en (7, 7) no tiene una letra)
-        self.assertTrue(self.board.is_empty())
-
-        # Caso 2: Tablero con una letra en la celda (7, 7)
-        self.board.grid[7][7].letter = 'A'
-        self.assertFalse(self.board.is_empty())
-
-
-    def test_is_empty_board_single_letter(self):
-        # Caso 1: Tablero con una letra
-        self.board.grid[7][7].letter = 'A'
-        self.assertFalse(self.board.is_empty())
-
-    def test_is_empty_board_full(self):
-        # Caso 1: Tablero lleno
-        for i in range(15):
-            for j in range(15):
-                self.board.grid[i][j].letter = 'X'
-        self.assertFalse(self.board.is_empty())
-
-    def test_is_empty_board_mixed(self):
-        # Caso 1: Tablero con una letra en una celda
-        self.board.grid[5][5].letter = 'Y'
-        self.assertTrue(self.board.is_empty())
-
-    def test_word_passes_center_horizontal(self):
-        # Caso 1: Palabra que pasa por el centro horizontalmente
+    def test_board_is_empty(self):
+        board = Board()
+        self.assertEqual(board.is_empty(), True)
+        
+    def test_board_is_not_empty(self):
+        board = Board()
+        board.grid[7][7] = Tile('C', 1)
+        self.assertEqual(board.is_empty(), False)
+    
+    def test_place_word_empty_board_horizontal_fine(self):
+        board = Board()
         word = "Facultad"
-        location = (7, 6)
-        word_is_valid = self.board.validate_word_inside_board(word, location, 'H')
-        self.assertFalse(word_is_valid, "La palabra debe pasar por el centro horizontalmente.")
+        location = (7, 4)
+        orientation = "Horizontal"
 
-    def test_word_passes_center_vertical(self):
-        # Caso 1: Palabra que pasa por el centro verticalmente
-        word = "Terreno"
-        location = (6, 7)
-        word_is_valid = self.board.validate_word_inside_board(word, location, 'V')
-        self.assertFalse(word_is_valid, "La palabra debe pasar por el centro verticalmente.")
-
-    def test_validate_word_passes_center_horizontal_valid(self):
-        # Caso 1: Palabra que pasa por el centro horizontalmente (válida)
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+        
+    def test_place_word_empty_board_vertical_fine(self):
+        board = Board()
         word = "Facultad"
-        location = (7, 6)  # Posición donde el centro está en (7, 7)
-        orientation = 'H'
-        word_is_valid = self.board.validate_word_passes_center(word, orientation)
-        self.assertTrue(word_is_valid)
+        location = (4, 7)
+        orientation = "Vertical"
 
-    def test_validate_word_passes_center_horizontal_invalid(self):
-        # Caso 2: Palabra que no pasa por el centro horizontalmente (inválida)
-        word = "Universidad"
-        orientation = 'H'
-        word_is_valid = self.board.validate_word_passes_center(word, orientation)
-        self.assertTrue(word_is_valid)
-
-    def test_validate_word_passes_center_vertical_invalid(self):
-        # Caso 4: Palabra que no pasa por el centro verticalmente (inválida)
-        word = "Sierra"
-        orientation = 'V'
-        word_is_valid = self.board.validate_word_passes_center(word, orientation)
-        self.assertTrue(word_is_valid)
-
-    def test_validate_word_inside_board_horizontal_out_of_bounds(self):
-        # Caso 1: Palabra horizontal que excede los límites del tablero (inválida)
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+        
+    def test_place_word_empty_board_horizontal_wrong(self):
+        board = Board()
         word = "Facultad"
-        location = (14, 10)
-        orientation = 'H'
-        word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
-        self.assertFalse(word_is_valid)
+        location = (2, 4)
+        orientation = "Horizontal"
 
-    def test_validate_word_inside_board_vertical_out_of_bounds(self):
-        # Caso 2: Palabra vertical que excede los límites del tablero (inválida)
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
+         
+    def test_place_word_empty_board_vertical_wrong(self):
+        board = Board()
         word = "Facultad"
-        location = (10, 14)
-        orientation = 'V'
-        word_is_valid = self.board.validate_word_inside_board(word, location, orientation)
-        self.assertFalse(word_is_valid)
+        location = (4, 2)
+        orientation = "Vertical"
 
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
+    
+    def test_place_word_no_empty_board_horizontal_fine(self):
+        board = Board()
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[8][7].add_letter(Tile('A',1))
+        board.grid[9][7].add_letter(Tile('S',1))
+        board.grid[10][7].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (8, 4)
+        orientation = "Horizontal"
+
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+    
+    def test_place_word_no_empty_board_vertical_fine(self):
+        board = Board()
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[7][8].add_letter(Tile('A',1))
+        board.grid[7][9].add_letter(Tile('S',1))
+        board.grid[7][10].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (4, 8)
+        orientation = "Vertical"
+
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == True
+        
+    def test_place_word_no_empty_board_horizontal_wrong(self):
+        board = Board()
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[8][7].add_letter(Tile('A',1))
+        board.grid[9][7].add_letter(Tile('S',1))
+        board.grid[10][7].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (8, 3)
+        orientation = "Horizontal"
+
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
+    
+    def test_place_word_no_empty_board_vertical_wrong(self):
+        board = Board()
+        board.grid[7][7].add_letter(Tile('C',1))
+        board.grid[7][8].add_letter(Tile('A',1))
+        board.grid[7][9].add_letter(Tile('S',1))
+        board.grid[7][10].add_letter(Tile('A',1))
+        word = "Hola"
+        location = (3, 8)
+        orientation = "Vertical"
+
+        word_is_valid = board.validate_word_place_board(word, location, orientation)
+        assert word_is_valid == False
+
+    # Tets de Agregar Función para Limpiar una Celda
+    def test_clear_cell_valid(self):
+        board = Board()
+        tile = Tile('A', 1)
+
+        # Colocamos una ficha en una celda
+        board.place_tile(7, 7, tile)
+        # Luego la limpiamos
+        board.clear_cell(7, 7)
+        # Comprobamos que la celda esté vacía
+        self.assertIsNone(board.grid[7][7].letter)
+
+    def test_clear_cell_invalid(self):
+        board = Board()
+
+        # Intentamos limpiar una celda fuera de los límites
+        result = board.clear_cell(16, 16)
+        # Debería devolver False ya que la celda está fuera de los límites
+        self.assertFalse(result)
+    
+if __name__ == "__main__":
+    unittest.main()
 
 
 if __name__ == '__main__':
