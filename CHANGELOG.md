@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.0.24] - 10-10-2023
+
+### Changed
+
+- I made modifications to my board class to make it a more flexible and functional version, expanding its capacity and versatility, providing a solid foundation for the development and playability of the game.
+
+- Improve the usability and customization capacity of the dashboard.
+
+
 ## [0.0.23] - 09-10-2023
 
 ### Add 
