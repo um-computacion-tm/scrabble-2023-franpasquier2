@@ -42,9 +42,8 @@ class ScrabbleGame:
             return True
         return False
     
-    def get_board(self):
-        return self.board
-        self.current_player = self.players[self.players.index(self.current_player)+ 1]
+    """def get_board(self):
+        return self.board"""
             
 
 

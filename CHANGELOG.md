@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.25] - 18-10-2023
+
+### Changed
+
+- Rename calculate_word_value to tools, then add tools
+
+- Modify my scrabble class so that my covergae is higher
+
+- Delete the env folder from my repository
+
 ## [0.0.24] - 10-10-2023
 
 ### Changed

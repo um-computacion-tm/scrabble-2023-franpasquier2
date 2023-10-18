@@ -51,15 +51,13 @@ class TestScrabbleGame(unittest.TestCase):
         orientation = "Horizontal"
         self.assertEqual(scrabble_game.validate_word(word, location, orientation), False)
     
-    def test_validate_word_invalid_word(self):
+    def test_validate_word_valid_word(self):
         scrabble_game = ScrabbleGame(2)
-        word = "Imvalid"  # Una palabra que sabemos que no está en el diccionario
+        word = "Facultad"
         location = (7, 7)
         orientation = "Horizontal"
-        
-        result = scrabble_game.validate_word(word, location, orientation)
-        
-        self.assertFalse(result)
+        self.assertTrue(scrabble_game.validate_word(word, location, orientation))
+
 
     def test_game_over_true(self):
         game = ScrabbleGame(players_count=2)
