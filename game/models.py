@@ -1,130 +1,43 @@
-import unittest, random
+import random
 
 class Tile:
-    def __init__(self,letter,value):
-        self.letter = letter
+    def __init__(self, letter='', value=0):
+        self.letter = str(letter)
         self.value = value
 
 
-class BagTiles():
+class BagTiles:
     def __init__(self):
-        self.tiles = [
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('A',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('E',1),
-            Tile('I',1),
-            Tile('I',1),
-            Tile('I',1),
-            Tile('I',1),
-            Tile('I',1),
-            Tile('I',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('O',1),
-            Tile('U',1),
-            Tile('U',1),
-            Tile('U',1),
-            Tile('U',1),
-            Tile('U',1),
-            Tile('L',1),
-            Tile('L',1),
-            Tile('L',1),
-            Tile('L',1),
-            Tile('LL',1),
-            Tile('N',1),
-            Tile('N',1),
-            Tile('N',1),
-            Tile('N',1),
-            Tile('N',1),
-            Tile('S',1),
-            Tile('S',1),
-            Tile('S',1),
-            Tile('S',1),
-            Tile('S',1),
-            Tile('S',1),
-            Tile('T',1),
-            Tile('T',1),
-            Tile('T',1),
-            Tile('T',1),
-            Tile('R',1),
-            Tile('R',1),
-            Tile('R',1),
-            Tile('R',1),
-            Tile('R',1),
-            Tile('RR', 8),
-            Tile('D',2),
-            Tile('D',2),
-            Tile('D',2),
-            Tile('D',2),
-            Tile('D',2),
-            Tile('G',2),
-            Tile('G',2),
-            Tile('B',3),
-            Tile('B',3),
-            Tile('C',3),
-            Tile('CH', 5),
-            Tile('C',3),
-            Tile('C',3),
-            Tile('C',3),
-            Tile('M',3),
-            Tile('M',3),
-            Tile('P',3),
-            Tile('P',3),
-            Tile('F',4),
-            Tile('H',4),
-            Tile('H',4),
-            Tile('V',4),
-            Tile('W',4),
-            Tile('Y',4),
-            Tile('K',5),
-            Tile('Q',5),
-            Tile('J',8),
-            Tile('X',8),
-            Tile('Ñ',8),
-            Tile('Z',10),
-            Tile('Com', 0),
-            Tile('Com', 0),
+        self.tiles = []
+
+        tile_info = [
+            ('A', 1, 12), ('E', 1, 12), ('O', 1, 9),
+            ('I', 1, 6), ('S', 1, 6), ('N', 1, 5),
+            ('L', 1, 4), ('R', 1, 5), ('U', 1, 5),
+            ('T', 1, 4), ('D', 2, 5), ('G', 2, 2),
+            ('C', 3, 4), ('B', 3, 2), ('M', 3, 2),
+            ('P', 3, 2), ('H', 4, 2), ('F', 4, 1),
+            ('V', 4, 1), ('Y', 4, 1), ('J', 8, 1),('CH',5,1),('Q',5,1),
+            ('LL', 8, 1), ('Ñ', 8, 1), ('RR', 8, 1),
+            ('X', 8, 1), ('Z', 10, 1),
+            (' ', 0, 2)  # Comodines en blanco
         ]
 
+        for letter, value, count in tile_info:
+            self.tiles.extend([Tile(letter, value)] * count)
+
         random.shuffle(self.tiles)
+
     def take(self, count):
         tiles = []
         for _ in range(count):
-            tiles = self.tiles.pop(0)
+            tiles.append(self.tiles.pop(0))
         return tiles
+
     def put(self, tiles):
         self.tiles.extend(tiles)
-
-
-if __name__ == '__main__':
-    unittest.main()
+        while len(self.tiles) > 100:  # Mantener un máximo de 100 fichas, incluyendo comodines
+            self.tiles.pop()
   
    
         
