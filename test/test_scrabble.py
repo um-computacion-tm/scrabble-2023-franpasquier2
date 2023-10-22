@@ -1,8 +1,10 @@
 import unittest
-from game.scrabble import ScrabbleGame
+from game.scrabble import ScrabbleGame, InvalidWordException, InvalidJokerConversion
 from game.models import Tile
-
-
+from game.board import Board
+from game.cell import Cell
+from game.player import Player
+from game.dictionary import Dictionary 
 
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):
@@ -37,28 +39,43 @@ class TestScrabbleGame(unittest.TestCase):
         scrabble_game.next_turn()
         self.assertEqual(scrabble_game.current_player.name, scrabble_game.players[0].name)
         
-    '''def test_validate_word(self):
-        scrabble_game = ScrabbleGame(2)
+    def test_validate_word(self):
+        game = ScrabbleGame(2)
         word = "Facultad"
         location = (7, 7)
         orientation = "Horizontal"
-        self.assertEqual(scrabble_game.validate_word(word,location,orientation), True)'''
+        self.assertEqual(game.validate_word(word,location,orientation), True)
         
-    def test_validate_word_false(self):
-        scrabble_game = ScrabbleGame(2)
-        word = "Kadabra"
-        location = (0,0)
-        orientation = "Horizontal"
-        self.assertEqual(scrabble_game.validate_word(word, location, orientation), False)
-    
-    def test_validate_word_valid_word(self):
-        scrabble_game = ScrabbleGame(2)
-        word = "Facultad"
+    def test_validate_word_simple(self):
+        # Prueba simple para validar_word
+        game = ScrabbleGame(players_count=3)
+        game.current_player = game.players[0]
+
+        word = "HELLO"
         location = (7, 7)
         orientation = "Horizontal"
-        self.assertTrue(scrabble_game.validate_word(word, location, orientation))
 
+        with self.assertRaises(InvalidWordException):
+            is_valid = game.validate_word(word, location, orientation)
+            
+    def test_validate_word_not_in_dictionary(self):
+        game = ScrabbleGame(2)
+        word = "Kadabra"
+        location = (0, 0)
+        orientation = "Horizontal"
+        
+        # Aquí necesitas validar que la excepción sea lanzada.
+        with self.assertRaises(InvalidWordException):
+            game.validate_word(word, location, orientation)
 
+    def test_validate_word_exceeds_board(self):
+        game = ScrabbleGame(2)
+        word = "Facultad"
+        location = (14,14)
+        orientation = "H"
+        with self.assertRaises(InvalidWordException):
+            game.validate_word(word, location, orientation)
+            
     def test_game_over_true(self):
         game = ScrabbleGame(players_count=2)
         game.bag_tiles.tiles = []  # Vacía la bolsa de fichas
@@ -74,7 +91,48 @@ class TestScrabbleGame(unittest.TestCase):
         is_game_over = game.game_over()
 
         self.assertFalse(is_game_over)
+    
+    def test_show_amount_tiles_bag(self):
+        game = ScrabbleGame(2)
+        self.assertEqual(game.show_amount_tiles_bag(), 100)
+    
+    def test_shuffle_rack(self):
+        game = ScrabbleGame(2)
+        game.next_turn()
+        game.current_player.rack = [Tile('A', 1), Tile('B',3), Tile('C',2)]
+        game.shuffle_rack()
+        self.assertEqual(len(game.current_player.rack), 3)
+        
+    def test_clean_word_to_use(self):
+        game = ScrabbleGame(2)
+        word = 'Imaginación'
+        self.assertEqual(game.clean_word_to_use(word), 'IMAGINACION')
+    
+    '''def test_convert_joker_fine(self):
+        game = ScrabbleGame(2)
+        game.next_turn()
+        game.current_player.rack = [Tile('?', 0)]
+        game.convert_joker('A')
+        self.assertEqual(game.current_player.rack[0].letter, 'A')
+        self.assertEqual(game.current_player.rack[0].value, 1)'''
 
+    def test_convert_wildcard_no_wildcard(self):
+        game = ScrabbleGame(2)
+        game.next_turn()
+        game.current_player.rack = [Tile('A', 1)]
+        with self.assertRaises(InvalidJokerConversion):
+            game.convert_joker('B')
+
+    def test_input_to_int_wrong_fine(self):
+        game = ScrabbleGame(2)
+        string = '0'
+        self.assertEqual(game.input_to_int(string), 0)
+
+    def test_input_to_int_wrong(self):
+        game = ScrabbleGame(2)
+        string = 'm'
+        self.assertEqual(game.input_to_int(string), None)
+      
 if __name__ == "__main__":
     unittest.main()
 

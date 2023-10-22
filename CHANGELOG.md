@@ -3,7 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
+
+## [0.0.28] - 22-10-2023
+
+### Changed
+
+-I made changes to main that make it more complete and offer more advanced functionality for playing Scrabble on the console. Provides player options, exception handling, and a more complete interface.
+
+-I made some small modifications to my player class
+
+### Add
+-Add new valid and invalid joker conversion classes to my scrabble class
+
+
+
+
+
 
 ## [0.0.27] - 20-10-2023
 
