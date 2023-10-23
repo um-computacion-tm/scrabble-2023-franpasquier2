@@ -110,6 +110,35 @@ class TestCell(unittest.TestCase):
         cell = Cell(letter=letter)
         self.assertFalse(cell.can_contain_letter())
 
+
+    def test_can_place_letter_unoccupied(self):
+        # La celda no está ocupada
+        letter = Tile('A', 1)
+        self.assertTrue(self.cell.can_place_letter(letter))
+
+    def test_can_place_letter_occupied(self):
+        # La celda ya está ocupada
+        letter1 = Tile('A', 1)
+        letter2 = Tile('B', 3)
+        self.cell.add_letter(letter1)
+        self.assertFalse(self.cell.can_place_letter(letter2))
+
+    def test_can_place_letter_letter_multiplier(self):
+        # El tipo de multiplicador es 'letter'
+        self.cell.set_multiplier(2, 'letter')
+        letter1 = Tile('A', 1)
+        letter2 = Tile('B', 3)
+        self.assertTrue(self.cell.can_place_letter(letter1))
+        self.assertTrue(self.cell.can_place_letter(letter2))
+
+    def test_can_place_letter_word_multiplier(self):
+        # El tipo de multiplicador es 'word'
+        self.cell.set_multiplier(3, 'word')
+        letter1 = Tile('A', 1)
+        letter2 = Tile('B', 3)
+        self.assertTrue(self.cell.can_place_letter(letter1))
+        self.assertTrue(self.cell.can_place_letter(letter2))
+
 if __name__ == '__main__':
     unittest.main()
 

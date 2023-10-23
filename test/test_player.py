@@ -127,6 +127,7 @@ class TestPlayer(unittest.TestCase):
         player.set_tiles(tiles)
         self.assertEqual(player.get_tiles(), tiles)
 
+    
 if __name__ == "__main__":
     unittest.main()
 

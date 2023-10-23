@@ -59,7 +59,6 @@ class Player:
         
     def get_tiles(self):
         return self.tiles
-    
 
     def add_joker(self):
         self.has_joker = True
@@ -69,3 +68,5 @@ class Player:
 
     def has_joker(self):
         return self.has_joker
+    
+    
