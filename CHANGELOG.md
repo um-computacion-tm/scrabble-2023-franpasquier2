@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.0.29] - 23-10-2023
+
+-New method that checks if a letter can be placed in this cell based on the rules of the game, such as if it is already occupied or if the multiplier type is valid.
+
+
 ## [0.0.28] - 22-10-2023
 
 ### Changed
@@ -15,10 +20,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Add
 -Add new valid and invalid joker conversion classes to my scrabble class
-
-
-
-
 
 
 ## [0.0.27] - 20-10-2023

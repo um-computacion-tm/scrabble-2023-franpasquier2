@@ -71,6 +71,9 @@ class Main:
                 break
             else:
                 print('Valor invalido, intente de nuevo')
+
+    
+    
                   
 if __name__ == '__main__':
     main = Main()

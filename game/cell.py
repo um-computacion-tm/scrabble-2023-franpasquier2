@@ -41,9 +41,15 @@ class Cell:
     def is_occupied(self):
         return self.letter is not None
     
-    
     def can_contain_letter(self):
         return not self.is_occupied() and self.multiplier_type in ('', 'letter')
+    
+    def can_place_letter(self, letter):
+        if self.is_occupied():
+            return False
+    # Agregar lógica para verificar el tipo de multiplicador y otras reglas
+        return True
+
 
 
 
