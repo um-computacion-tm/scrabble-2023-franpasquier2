@@ -89,6 +89,14 @@ class ScrabbleGame:
         else:
             raise InvalidJokerConversion('No tienes un comodin en tu rack')
         
+    def calculate_scores(self):
+        for player in self.players:
+            player_score = 0
+            for cell in self.board.played_cells:
+                cell_value = cell.calculate_value()
+                player_score += cell_value
+            player.add_score(player_score)
+        
 
 
 

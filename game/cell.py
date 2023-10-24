@@ -49,6 +49,15 @@ class Cell:
             return False
     # Agregar lógica para verificar el tipo de multiplicador y otras reglas
         return True
+    
+    def is_double_letter(self):
+        return self.multiplier_type == 'DL'
+
+    def is_triple_letter(self):
+        return self.multiplier_type == 'TL'
+    
+    
+
 
 
 

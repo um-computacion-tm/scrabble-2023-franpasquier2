@@ -8,6 +8,8 @@ class Board:
             [Cell(1, '') for _ in range(self.size)]
             for _ in range(self.size)
         ]
+        self.cells = [[Cell() for _ in range(15)] for _ in range(15)]
+        self.played_cells = []  # Tablero 15x15 con celdas vacías
 
     def place_tile(self, location_x, location_y, tile):
         if 0 <= location_x < 15 and 0 <= location_y < 15:
@@ -101,6 +103,23 @@ class Board:
             cell = self.grid[location_x][location_y]
             if cell.letter is not None:
                 cell.remove_letter()
+
+    def place_word(self, word, start_position, orientation):
+        x, y = start_position
+        played_word_cells = []
+
+        if orientation == "horizontal":
+            for letter in word:
+                cell = self.cells[x][y]
+                cell.add_letter(Tile(letter))
+                played_word_cells.append(cell)
+                x += 1
+        elif orientation == "vertical":
+            for letter in word:
+                cell = self.cells[x][y]
+                cell.add_letter(Tile(letter))
+                played_word_cells.append(cell)
+                y += 1
     
     
     
