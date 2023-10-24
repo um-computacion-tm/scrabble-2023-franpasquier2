@@ -139,6 +139,8 @@ class TestCell(unittest.TestCase):
         self.assertTrue(self.cell.can_place_letter(letter1))
         self.assertTrue(self.cell.can_place_letter(letter2))
 
+    
+
 if __name__ == '__main__':
     unittest.main()
 

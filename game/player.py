@@ -69,4 +69,9 @@ class Player:
     def has_joker(self):
         return self.has_joker
     
+    def add_score(self, score):
+        self.score += score
+
+    def get_score(self):
+        return self.score
     

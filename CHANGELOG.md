@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.0.30] - 24-10-2023
+
+### Add
+
+- Add a new method that calculates player scores based on the cells played on the board during a turn and updates player scores accordingly. Each player will receive a score based on the letters they played and any multipliers on the cells played.
+
+- Next commit, I will increase the coverage percentage
+
 ## [0.0.29] - 23-10-2023
 
 -New method that checks if a letter can be placed in this cell based on the rules of the game, such as if it is already occupied or if the multiplier type is valid.

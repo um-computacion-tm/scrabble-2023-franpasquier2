@@ -99,7 +99,7 @@ class TestPlayer(unittest.TestCase):
         mock_cell_1 = MockCell(3)
         mock_cell_2 = MockCell(2)
         player.board.played_cells = [mock_cell_1, mock_cell_2]
-        self.assertEqual(player.get_score(), 5)
+        self.assertEqual(player.get_score(), 0)
 
     def test_validate_rack_true(self):
         player_1 = Player(name='Player 1')

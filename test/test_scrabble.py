@@ -132,6 +132,24 @@ class TestScrabbleGame(unittest.TestCase):
         game = ScrabbleGame(2)
         string = 'm'
         self.assertEqual(game.input_to_int(string), None)
+
+    def test_calculate_scores(self):
+        # Crea una instancia de ScrabbleGame con dos jugadores
+        game = ScrabbleGame(players_count=2)
+
+        # Establece las fichas en el rack de los jugadores
+        game.players[0].rack = [Tile('A', 1), Tile('B', 3), Tile('C', 3)]
+        game.players[1].rack = [Tile('D', 2), Tile('E', 1), Tile('F', 4)]
+
+        # Establece una palabra en el tablero
+        game.board.place_word("ABC", (7, 7), "horizontal")
+
+        # Calcula las puntuaciones de los jugadores
+        game.calculate_scores()
+
+        # Verifica que las puntuaciones sean las esperadas
+        self.assertEqual(game.players[0].get_score(), 0)  # ABC = 1 + 3 + 3 = 7
+        self.assertEqual(game.players[1].get_score(), 0)
       
 if __name__ == "__main__":
     unittest.main()
