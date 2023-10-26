@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.0.31] - 26-10-2023
+
+### Add
+
+-Add new methods to my Tile class
+
+-New methods in Main:
+
+The change_joker_to_tile function allows the player to attempt to exchange a joker for a normal tile while handling exceptions if an error occurs.
+
+convert_joker_into_tile prompts the player to enter a letter to replace the joker. It then checks to see if the letter entered is in a list of valid letters (the Scrabble alphabet). If it is a valid letter, the game's convert_joker method is called to make the replacement and a success message is displayed.
+
+### Changed
+
+-I made some modifications to the player to improve the coverage since there were lines that were not read.
+
+-Multipliers of words and letters on a Scrabble board and creates a matrix representation of the game board in my Board class.
+
 ## [0.0.30] - 24-10-2023
 
 ### Add
