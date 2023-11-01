@@ -10,6 +10,7 @@ from unittest.mock import call
 from game.models import Tile
 
 
+
 class TestScrabbleGame(unittest.TestCase):
     def setUp(self):
         self.main_output = StringIO()
@@ -122,15 +123,15 @@ class TestScrabbleGame(unittest.TestCase):
         main.exchange_tiles()
         self.assertEqual(len(main.game.players[0].rack), 7) 
         
-    '''@patch('builtins.input', side_effect=['2', 'A'])
+    @patch('builtins.input', side_effect=['2', 'A'])
     def test_change_joker_to_tile_true(self, mock_input):
         main = Main()
         main.game.next_turn()
         main.game.current_player.rack = [Tile('?', 0), Tile('B', 1)]
         main.change_joker_to_tile()
-        self.assertEqual(main.game.current_player.rack[0].letter, 'A')'''
+        self.assertEqual(main.game.current_player.rack[0].letter, 'A')
 
-    '''    @patch('builtins.print')
+    @patch('builtins.print')
     @patch('builtins.input', side_effect=['2', 'AB', 'A'])
     def test_change_joker_to_tile_second_try(self, mock_input, mock_print):
         main = Main()
@@ -141,9 +142,7 @@ class TestScrabbleGame(unittest.TestCase):
             call('Bienvenido a Scrabble Game!'),
             call('Valor invalido, intente de nuevo'),
             call('Se ha cambiado con exito')]
-        mock_print.assert_has_calls(expected_output, any_order=False)'''
-
-
+        mock_print.assert_has_calls(expected_output, any_order=False)
 
 if __name__ == '__main__':
     unittest.main()

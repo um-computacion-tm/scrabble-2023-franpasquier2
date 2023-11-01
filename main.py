@@ -1,5 +1,6 @@
 import os
 import sys
+import pickle
 
 # Ruta absoluta del directorio raíz del proyecto
 project_root = os.path.dirname(os.path.abspath(__file__))
@@ -92,5 +93,56 @@ class Main:
             return True
         else:
             print('Valor invalido, intente de nuevo')
-            return False     
+            return False
+    
+    '''def validate_move(self, word, start, direction):
+        # Lógica para validar si la jugada es legal
+        pass'''
 
+    '''def show_scores(self):
+        for player in self.game.players:
+            print(f"Puntuación de {player.name}: {player.score}")
+
+    def save_game(self, file_name):
+        with open(file_name, 'wb') as file:
+            pickle.dump(self.game, file)
+        print(f"Partida guardada en '{file_name}'")'''
+
+    def load_game(self, file_name):
+        with open(file_name, 'rb') as file:
+            self.game = pickle.load(file)
+        print(f"Partida cargada desde '{file_name}'")
+
+    def validate_move(self, word, start, direction):
+        if self.game.board.is_valid_move(word, start, direction):
+            return True
+        else:
+            return False
+        
+    def play_game(self):
+        print('¡Que comienze el juegoo!')
+        self.game.put_initial_tiles_bag()
+        self.game.put_tiles_in_rack()        
+        while not self.game.game_over():
+            self.game.next_turn()
+            self.show_board()
+            player_number = self.game.get_current_player_id()
+            print(f'Turno del jugador {player_number}')
+            self.take_turn()
+            self.get_tiles_to_full_rack()
+        print('¡Juego finalizado!')
+        self.show_scores()
+        
+    def show_instructions(self):
+    # Mensajes para ayudar a los jugadores a comprender las reglas del juego
+        print("Instrucciones de Scrabble:")
+        print("1. El objetivo es formar palabras en el tablero con las fichas disponibles.")
+        print("2. Las palabras deben conectarse con otras ya existentes.")
+
+    def enhance_ui(self):
+        pass
+
+
+if __name__ == "__main__":
+    main = Main()
+    main.play_game()
