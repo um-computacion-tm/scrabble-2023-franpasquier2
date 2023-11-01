@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.0.32] - 31-10-2023
+
+### Add
+
+-Also add new methods that manage the logic and interaction of the Scrabble game.
+
+### Changed
+
+-I was making changes and modifications in main to be able to run the game.
+
+-Changes in my .codeclimate.yml
+
 ## [0.0.31] - 26-10-2023
 
 ### Add
