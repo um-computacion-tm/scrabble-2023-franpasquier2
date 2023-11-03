@@ -48,14 +48,16 @@ class ScrabbleGame:
         word = word.strip().upper()
         return word
     
+
     def validate_word(self, word, location, orientation):
         if not self.dict_validate_word(word):
             raise InvalidWordException('Su palabra no existe en el diccionario')
+
         if not self.board.validate_word_inside_board(word, location, orientation):
             raise InvalidWordException('Su palabra excede el tablero')
+
         if not self.board.validate_word_place_board(word, location, orientation):
-            #Hacer test para que corra la linea 56
-            raise InvalidWordException('Su palabra no se cruza con ninguna palabra valida') 
+            raise InvalidWordException('Su palabra no se cruza con ninguna palabra válida')
         return True
 
     def game_over(self):

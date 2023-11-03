@@ -50,11 +50,11 @@ class Cell:
     # Agregar lógica para verificar el tipo de multiplicador y otras reglas
         return True
     
-    def is_double_letter(self):
+    '''def is_double_letter(self):
         return self.multiplier_type == 'DL'
 
     def is_triple_letter(self):
-        return self.multiplier_type == 'TL'
+        return self.multiplier_type == 'TL'''
     
     
 

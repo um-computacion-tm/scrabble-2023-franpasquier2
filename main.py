@@ -2,11 +2,9 @@ import os
 import sys
 import pickle
 
-# Ruta absoluta del directorio raíz del proyecto
 project_root = os.path.dirname(os.path.abspath(__file__))
-# Agregar el directorio raíz a sys.path
 sys.path.insert(0, project_root)
-# Importar las clases de game sin problemas
+
 from game.scrabble import ScrabbleGame, InvalidJokerConversion
 
 class Main:
@@ -71,7 +69,7 @@ class Main:
             elif index == 0:
                 break
             else:
-                print('Valor invalido, intente de nuevo')
+                print('Valor invalido, proba de nuevo por favor')
 
     def change_joker_to_tile(self):
         while True:
@@ -82,7 +80,7 @@ class Main:
                 print(f'Error: {e}')
     
     def convert_joker_into_tile(self):
-        new_letter = input('Ingrese la letra que desea cambiar por el comodin (0 para terminar): ')
+        new_letter = input('Ingrese la letra que quieras cambiar por el comodin (0 para terminar): ')
         new_letter= new_letter.strip().upper()
         alphabet = ['A', 'B', 'C', 'CH', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'LL', 'M', 'N','Ñ', 'O', 'P', 'Q', 'R', 'RR', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z']
         if new_letter in alphabet:
@@ -92,21 +90,21 @@ class Main:
         elif new_letter == '0':
             return True
         else:
-            print('Valor invalido, intente de nuevo')
+            print('Valor invalido, intente de nuevo por favor')
             return False
     
-    '''def validate_move(self, word, start, direction):
+    def validate_move(self, word, start, direction):
         # Lógica para validar si la jugada es legal
-        pass'''
+        pass
 
-    '''def show_scores(self):
+    def show_scores(self):
         for player in self.game.players:
             print(f"Puntuación de {player.name}: {player.score}")
 
     def save_game(self, file_name):
         with open(file_name, 'wb') as file:
             pickle.dump(self.game, file)
-        print(f"Partida guardada en '{file_name}'")'''
+        print(f"Partida guardada en '{file_name}'")
 
     def load_game(self, file_name):
         with open(file_name, 'rb') as file:
@@ -120,7 +118,7 @@ class Main:
             return False
         
     def play_game(self):
-        print('¡Que comienze el juegoo!')
+        print('¡Hora de comenzar el juegoo!')
         self.game.put_initial_tiles_bag()
         self.game.put_tiles_in_rack()        
         while not self.game.game_over():
@@ -130,7 +128,7 @@ class Main:
             print(f'Turno del jugador {player_number}')
             self.take_turn()
             self.get_tiles_to_full_rack()
-        print('¡Juego finalizado!')
+        print('¡Juego Terminado!')
         self.show_scores()
         
     def show_instructions(self):
