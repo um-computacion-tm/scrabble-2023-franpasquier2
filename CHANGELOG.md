@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.0.33] - 3-11-2023
+
+### Changed
+
+-Changes and modifications in Scraabble, to improve code coverage.
+
+### Add
+
+- Add a new class Tools_1, which contain methods that are intended to assist in formatting, checking and handling cells and their contents within the game board.
+
 ## [0.0.32] - 31-10-2023
 
 ### Add

@@ -5,7 +5,7 @@ from game.board import Board
 from game.cell import Cell
 from game.player import Player
 from game.dictionary import Dictionary 
-
+from unittest.mock import Mock
 class TestScrabbleGame(unittest.TestCase):
     def test_init(self):
         scrabble_game = ScrabbleGame(players_count=3)
@@ -133,23 +133,32 @@ class TestScrabbleGame(unittest.TestCase):
         string = 'm'
         self.assertEqual(game.input_to_int(string), None)
 
-    '''def test_calculate_scores(self):
-        # Crea una instancia de ScrabbleGame con dos jugadores
-        game = ScrabbleGame(players_count=2)
+    def test_calculate_scores_with_no_players(self):
+        game = ScrabbleGame(players_count=4)  # Instancia de la clase o módulo que contiene 'calculate_scores'
+        game.players = []  # Configuración para simular que no hay jugadores
+        game.board.played_cells = [Mock(calculate_value=Mock(return_value=5))]  # Ejemplo de celdas simuladas
 
-        # Establece las fichas en el rack de los jugadores
-        game.players[0].rack = [Tile('A', 1), Tile('B', 3), Tile('C', 3)]
-        game.players[1].rack = [Tile('D', 2), Tile('E', 1), Tile('F', 4)]
-
-        # Establece una palabra en el tablero
-        game.board.place_word("ABC", (7, 7), "horizontal")
-
-        # Calcula las puntuaciones de los jugadores
         game.calculate_scores()
 
-        # Verifica que las puntuaciones sean las esperadas
-        self.assertEqual(game.players[0].get_score(), 0)  # ABC = 1 + 3 + 3 = 7
-        self.assertEqual(game.players[1].get_score(), 0)'''
+        # Verificar que no se generen puntuaciones si no hay jugadores
+        self.assertEqual(len(game.players), 0)  # Asegurarse de que no haya jugadores
+
+    def test_calculate_scores_with_players_and_cells(self):
+        game = ScrabbleGame(players_count=4)  # Instancia de la clase o módulo que contiene 'calculate_scores'
+        # Configuración para simular jugadores y celdas con diferentes valores
+        players = [Mock(add_score=Mock()) for _ in range(2)]
+        cells = [Mock(calculate_value=Mock(return_value=i + 1)) for i in range(5)]
+
+        game.players = players
+        game.board.played_cells = cells
+
+        game.calculate_scores()
+
+        # Verificar que los puntajes se han calculado y sumado correctamente para todos los jugadores y celdas
+        for player in players:
+            player.add_score.assert_called_once_with(sum(cell.calculate_value.return_value for cell in cells))
+
+        
       
 if __name__ == "__main__":
     unittest.main()

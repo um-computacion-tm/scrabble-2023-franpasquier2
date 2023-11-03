@@ -70,7 +70,7 @@ class TestScrabbleGame(unittest.TestCase):
         main.convert_tiles_in_another_tile(4, numbers)
         expected_output = [
             call('Bienvenido a Scrabble Game!'),
-            call('Valor invalido, intente de nuevo'),]
+            call('Valor invalido, proba de nuevo por favor'),]
         mock_print.assert_has_calls(expected_output, any_order=False)
         
     @patch('builtins.input', side_effect=['2', '2', '1', '3'])
@@ -140,7 +140,7 @@ class TestScrabbleGame(unittest.TestCase):
         main.change_joker_to_tile()
         expected_output = [
             call('Bienvenido a Scrabble Game!'),
-            call('Valor invalido, intente de nuevo'),
+            call('Valor invalido, intente de nuevo por favor'),
             call('Se ha cambiado con exito')]
         mock_print.assert_has_calls(expected_output, any_order=False)
 
