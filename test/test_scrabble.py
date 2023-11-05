@@ -94,7 +94,7 @@ class TestScrabbleGame(unittest.TestCase):
     
     def test_show_amount_tiles_bag(self):
         game = ScrabbleGame(2)
-        self.assertEqual(game.show_amount_tiles_bag(), 100)
+        self.assertEqual(game.show_amount_tiles_bag(), 29)
     
     def test_shuffle_rack(self):
         game = ScrabbleGame(2)
@@ -158,8 +158,13 @@ class TestScrabbleGame(unittest.TestCase):
         for player in players:
             player.add_score.assert_called_once_with(sum(cell.calculate_value.return_value for cell in cells))
 
-        
-      
+    def test_put_initial_tiles_bag(self):
+        game = ScrabbleGame(2)
+        self.assertEqual(len(game.bag_tiles.tiles), 29)
+        game.put_initial_tiles_bag()
+        self.assertEqual(len(game.bag_tiles.tiles), 100)
+
+
 if __name__ == "__main__":
     unittest.main()
 
