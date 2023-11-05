@@ -98,6 +98,9 @@ class ScrabbleGame:
                 cell_value = cell.calculate_value()
                 player_score += cell_value
             player.add_score(player_score)
+
+    def put_initial_tiles_bag(self):
+        self.bag_tiles.initial_tiles()
         
 
 

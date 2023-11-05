@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.0.34] - 5-11-2023
+
+### Changed
+
+-I made some changes and modifications to my BagTiles class
+
+### Add
+
+-Add new methods in my models class that check if a token is a wildcard or not and a method that allows changing the letter and value of a token.
+
+-Add a new method in my ScrabbleGame class put_initial_tiles_bag that is responsible for preparing the bag of game tiles, calling the initial_tiles() function that initializes the tiles with their corresponding values ​​and quantities.
+
+
 ## [0.0.33] - 3-11-2023
 
 ### Changed

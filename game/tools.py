@@ -1,6 +1,7 @@
 import unittest
 
 from game.cell import Cell
+from game.models import BagTiles
 
 def calculate_word_value(word: list[Cell]):
     value: int = 0
