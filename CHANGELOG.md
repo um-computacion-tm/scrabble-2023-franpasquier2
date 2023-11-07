@@ -5,6 +5,63 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 
+## [0.0.35] - 7-11-2023
+
+### Add 
+
+-Add a new file with a WORDPARSER class that contains methods for manipulating words and tokens:
+
+    -string_to_tiles(input_string, list): Converts a text string into a list of tiles.
+
+    
+    -special_to_tiles(input_string, list): Handles special two-letter combinations ('CH', 'LL', 'RR') and converts them into tiles.
+
+    -word_to_tiles(word): Converts a word into a list of tiles, identifying special combinations.
+
+    -locations_to_positions(word, location, orientation): Determines the positions occupied by a word's tiles on a board, based on the word, location, and orientation.
+
+    -word_to_cells(word, location, orientation, board): Converts a word into a list of cells, used to place tiles on a board.
+
+    -word_to_false_cells(word): Creates empty cells based on a word's tiles, but does not place them on the board.
+
+    -result_to_list_of_words(result): Extracts the first entry of each sublist into a results list, used to store and handle valid words.
+
+-Add a new file with a WORDANALYZER class to analyze and manipulate words and cells in a Scrabble-type game, which contains these methods:
+
+    -calculate_word_value(word): Calculates the total value of a word considering letter and word multipliers.
+
+    -compare_tiles_and_letters(tile, letter): Compares whether the letter on a tile matches a given letter.
+
+    -get_tiles_for_word_placement(word, location, orientation, board): Gets the tiles that will be used to place a word on a board at a given position and orientation.
+
+    -tiles_needed_to_form_word(word, location, orientation, board): Identifies the tiles needed to form a word given a location and orientation on the board.
+
+    -Methods of obtaining cells around a word on the board:
+        get_cell_in_the_extreme_horizontal
+        get_cell_in_the_extreme_vertical
+        get_cell_around_word_horizontal
+        get_cell_around_word_vertical
+
+    -verify_cell_around_word(list_cell, list_tiles, board): Checks if the cells around a word contain tiles and if they are available on the board.
+
+    -Methods to check letters/cells before and after a word in a specific orientation:
+        check_cells_before_horizontal
+        check_cells_before_vertical
+        check_cells_after_horizontal
+        check_cells_after_vertical
+
+    -find_words_in_directions(location_of_word, orientation, string, board): Finds words in a direction (horizontal or vertical) around an already placed word.
+
+    -check_tiles_around_word(list_tiles, orientation, board): Checks the words around the tiles of a word placed on a board, in a specific orientation (horizontal or vertical).
+
+- Add new methods in main.
+
+### Changed
+
+- I made all kinds of modifications to the other classes to be able to fix coverage.
+
+- Big changes to my class board
+
 ## [0.0.34] - 5-11-2023
 
 ### Changed
