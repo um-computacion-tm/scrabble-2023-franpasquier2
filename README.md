@@ -19,7 +19,7 @@ In this step place: cd scrabble-2023-franpasquier2
 
 # Third step
 
-In this step place: docker build -t scrabble .
+In this step place: docker build --no-cache -t jueguitosnew  .
 
 # Fourth and last step
 
