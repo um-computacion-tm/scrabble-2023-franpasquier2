@@ -86,8 +86,3 @@ class BagTiles:
         for letter, amount in initial_tiles.items():
             self.put(Tile(letter, self.get_value_for_letter(letter)), amount)
         random.shuffle(self.tiles)
-
-   
-  
-   
-        

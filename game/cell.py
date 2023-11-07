@@ -1,60 +1,37 @@
 from game.models import Tile
+from game.tools import Tools_1
 
 class Cell:
-    def __init__(self, multiplier=1, multiplier_type='', letter=None):
-        if not isinstance(multiplier, int):
-            raise ValueError("El valor del multiplicador debe ser un número entero.")
-        if multiplier_type not in ('', 'letter', 'word'):
-            raise ValueError("El tipo de multiplicador debe ser '', 'letter' o 'word'.")
-
+    def __init__(self, multiplier=1, multiplier_type='', letter=None, status='active'):
         self.multiplier = multiplier
         self.multiplier_type = multiplier_type
-        self.letter = letter 
-
+        self.letter = letter
+        self.status = status
+        self.original_state = {'multiplier': multiplier, 'multiplier_type': multiplier_type, 'letter': letter, 'status': 'active'}
+    def add_letter(self,letter:Tile):
+        self.letter = letter
     def calculate_value(self):
         if self.letter is None:
             return 0
         if self.multiplier_type == 'letter':
             return self.letter.value * self.multiplier
-        else:
+        if self.multiplier_type == 'word':
             return self.letter.value
-
-    def __str__(self):
-        return f"Cell(multiplier={self.multiplier}, multiplier_type='{self.multiplier_type}', letter={self.letter})"
+    def deactive_cell(self):
+        self.status = 'desactive'
+    def reset_cell(self):
+        self.letter = self.original_state.get('letter')
+        self.status = self.original_state.get('status')
+        self.multiplier = self.original_state.get('multiplier')
+        self.multiplier_type = self.original_state.get('multiplier_type')
+    def __repr__(self):
+        tool = Tools_1()
+        if self.status == "active":
+            return tool.format_active_cell(self)
+        else:
+            return tool.format_cell_contents(self)
     
-    def remove_letter(self):
-        self.letter = None
-
-    def add_letter(self, letter: Tile):
-        if not isinstance(letter, Tile):
-            raise ValueError("Only Tile objects can be added as letters.")
-        self.letter = letter
-
-    def set_multiplier(self, multiplier, multiplier_type):
-        if not isinstance(multiplier, int):
-            raise ValueError("El valor del multiplicador debe ser un número entero.")
-        if multiplier_type not in ('', 'letter', 'word'):
-            raise ValueError("El tipo de multiplicador debe ser '', 'letter' o 'word'.")
-        self.multiplier = multiplier
-        self.multiplier_type = multiplier_type
-
-    def is_occupied(self):
-        return self.letter is not None
     
-    def can_contain_letter(self):
-        return not self.is_occupied() and self.multiplier_type in ('', 'letter')
-    
-    def can_place_letter(self, letter):
-        if self.is_occupied():
-            return False
-    # Agregar lógica para verificar el tipo de multiplicador y otras reglas
-        return True
-    
-    '''def is_double_letter(self):
-        return self.multiplier_type == 'DL'
-
-    def is_triple_letter(self):
-        return self.multiplier_type == 'TL'''
     
     
 

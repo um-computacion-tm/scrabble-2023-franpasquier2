@@ -1,19 +1,3 @@
-import unittest
-
-from game.cell import Cell
-from game.models import BagTiles
-
-def calculate_word_value(word: list[Cell]):
-    value: int = 0
-    multiplier_word = None
-    for cell in word:
-        value = value + cell.calculate_value()
-        if cell.multiplier_type == 'word':
-            multiplier_word = cell.multiplier
-            cell.multiplier = 1
-    if multiplier_word != None:
-        value = (value * multiplier_word)
-    return value
 
 class Tools_1:
     def move_pointer(self, orientation, row, column):
@@ -43,7 +27,11 @@ class Tools_1:
             return self.format_placed_word_cell(cell)
 
     def format_multiplier(self, multiplier, multiplier_type):
+        if multiplier_type and len(multiplier_type) > 0:
             return f"{multiplier}{multiplier_type[0].upper()} "
+        else:
+            return f"{multiplier} "
+
     
     def filter_reapeted_column(self, list_tuples):
         columns = {}
